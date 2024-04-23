@@ -1,7 +1,7 @@
 # DCO Comment Attachment
 
 ## Fork Description
-This fork modifies the library so that:
+This fork modifies the plugin https://github.com/yadenis/DCO-Comment-Attachment so that:
 
 1) it works with WooCommerce's product reviews;
 2) it uses `post_parent` property on attachments instead of a custom meta field to track which attachments belong to which posts
