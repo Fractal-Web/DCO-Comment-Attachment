@@ -1,4 +1,7 @@
 {
+	"name": "fractal-web/DCO-Comment-Attachment",
+	"type": "wordpress-plugin",
+	"homepage": "https://github.com/Fractal-Web/DCO-Comment-Attachment",
 	"require-dev": {
 		"squizlabs/php_codesniffer": "*",
 		"wp-coding-standards/wpcs": "*",
