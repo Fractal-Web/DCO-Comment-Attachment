@@ -647,11 +647,9 @@ class DCO_CA extends DCO_CA_Base {
 			return $response;
 		}
 
-		$rel = $this->get_attachment_meta_key();
-
 		foreach ( $attachment_id as $attach_id ) {
 			$response->add_link(
-				$rel,
+				'attachment_id',
 				rest_url( 'wp/v2/media/' . $attach_id ),
 				array(
 					'embeddable' => true,

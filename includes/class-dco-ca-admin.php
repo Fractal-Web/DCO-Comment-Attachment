@@ -457,11 +457,16 @@ class DCO_CA_Admin extends DCO_CA_Base {
 	 * @since 1.0.0
 	 *
 	 * @param int $comment_id The comment ID.
-	 * @return int|bool Meta ID on success, false on failure.
+	 * @return bool true on success, false on failure.
 	 */
 	public function unassign_attachment( $comment_id ) {
-		$meta_key = $this->get_attachment_meta_key();
-		return delete_comment_meta( $comment_id, $meta_key );
+		$media = get_attached_media( '', $comment_id );
+
+		foreach ( $media as $m ) {
+			wp_update_post( [ 'ID' => $m->ID, 'post_parent' => null ] );
+		}
+
+		return true;
 	}
 
 	/**

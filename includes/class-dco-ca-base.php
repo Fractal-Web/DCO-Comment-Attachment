@@ -71,13 +71,18 @@ class DCO_CA_Base {
 	 *                          empty string on failure.
 	 */
 	public function get_attachment_id( $comment_id = 0 ) {
-		$meta_key = $this->get_attachment_meta_key();
-
 		if ( ! $comment_id ) {
 			$comment_id = get_comment_ID();
 		}
 
-		return get_comment_meta( $comment_id, $meta_key, true );
+		// Get all media attached to the comment of any mime type.
+		$media = get_attached_media( '', $comment_id );
+
+		foreach ( $media as $m ) {
+			return $m->ID;
+		}
+
+		return '';
 	}
 
 	/**
@@ -115,17 +120,15 @@ class DCO_CA_Base {
 	 *
 	 * @param int       $comment_id The comment ID.
 	 * @param int|array $attachment_id The attachment ID(s).
-	 * @return int|bool Meta ID on success, false on failure.
+	 * @return int|WP_Error The post ID on success. The value 0 or WP_Error on failure.
 	 */
 	public function assign_attachment( $comment_id, $attachment_id ) {
-		$meta_key = $this->get_attachment_meta_key();
-
 		// Compatibility with 1.x version.
 		if ( is_array( $attachment_id ) && 1 === count( $attachment_id ) ) {
 			$attachment_id = current( $attachment_id );
 		}
 
-		return update_comment_meta( $comment_id, $meta_key, $attachment_id );
+		return wp_update_post( [ 'ID' => $attachment_id, 'post_parent' => $comment_id ] );
 	}
 
 	/**
@@ -485,17 +488,6 @@ class DCO_CA_Base {
 		}
 
 		return $options;
-	}
-
-	/**
-	 * Gets the meta key of the attachment ID for comment meta.
-	 *
-	 * @since 1.0.0
-	 *
-	 * return string The attachment ID meta key.
-	 */
-	public function get_attachment_meta_key() {
-		return 'attachment_id';
 	}
 
 	/**
