@@ -65,7 +65,7 @@ class DCO_CA extends DCO_CA_Base {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
 		if ( $this->is_attachment_displayed() ) {
-			add_filter( 'comment_text', array( $this, 'display_attachment' ), 10, 2 );
+			add_filter( 'get_comment_text', array( $this, 'display_attachment' ), 10, 2 );
 		}
 
 		if ( $this->get_option( 'autoembed_links' ) && ! is_admin() ) {
