@@ -1,5 +1,5 @@
 {
-	"name": "fractal-web/DCO-Comment-Attachment",
+	"name": "fractal-web/dco-comment-attachment",
 	"type": "wordpress-plugin",
 	"homepage": "https://github.com/Fractal-Web/DCO-Comment-Attachment",
 	"require-dev": {
