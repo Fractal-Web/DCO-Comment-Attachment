@@ -11,6 +11,12 @@ Donate link: https://www.donationalerts.com/r/denisco
 
 Allows your visitors to attach files with their comments
 
+== Fork Description ==
+This fork modifies the library so that:
+
+1) it works with WooCommerce's product reviews;
+2) it uses `post_parent` property on attachments instead of a custom meta field to track which attachments belong to which posts
+
 == Description ==
 DCO Comment Attachment allows your visitors to attach images, videos, audios, documents and other files with their comments. They will also be able to automatically embed links from Youtube, Facebook, Twitter and other services in the comment text.
 
